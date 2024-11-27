@@ -1,0 +1,21 @@
+
+x-common: &default_options  
+  networks:   
+    - diplom  
+  restart: always  
+
+networks:  
+  diplom:  
+    name: diplom  
+    driver: bridge  
+
+services:  
+  app:  
+    container_name: DIPLOM  
+    build: .  
+    volumes:  
+      - .:/app   
+    ports:  
+      - "8501:8501"   
+    command: ["streamlit", "run", "app.py"]  
+    <<: *default_options
